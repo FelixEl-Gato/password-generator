@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { letters, numbers, symbols, copyToClipboard } from "./helper";
 import "./App.css";
+import { GeneratorCheck, GeneratorNumber } from "./components";
 
 export const App = () => {
   const [password, setPassword] = useState("");
@@ -45,59 +46,31 @@ export const App = () => {
               <i className="far fa-clipboard"></i>
             </button>
           </div>
-          <div className="form-group">
-            <label htmlFor="password-strength">Password Length</label>
-            <input
-              defaultValue={passwordLength}
-              onChange={(e) => setPasswordLength(e.target.value)}
-              type="number"
-              id="password-strength"
-              name="password-strength"
-              max="20"
-              min="10"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="uppercase-letters">Include Uppercase Letters</label>
-            <input
-              defaultValue={includeUppercase}
-              onChange={(e) => setIncludeUppercase(e.target.checked)}
-              type="checkbox"
-              id="uppercase-letters"
-              name="uppercase-letters"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="lowercase-letters">Include Lowercase Letters</label>
-            <input
-              defaultValue={includeLowercase}
-              onChange={(e) => setIncludeLowercase(e.target.checked)}
-              type="checkbox"
-              id="lowercase-letters"
-              name="lowercase-letters"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="include-numbers">Include Numbers</label>
-            <input
-              defaultValue={includeNumbers}
-              onChange={(e) => setIncludeNumbers(e.target.checked)}
-              type="checkbox"
-              id="include-numbers"
-              name="include-numbers"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="include-symbols">Include Symbols</label>
-            <input
-              defaultValue={includeSymbols}
-              onChange={(e) => setIncludeSymbols(e.target.checked)}
-              type="checkbox"
-              id="include-symbols"
-              name="include-symbols"
-            />
-          </div>
-
+          <GeneratorNumber
+            id={"password-strength"}
+            name={"Password Length"}
+            onHandle={setIncludeUppercase}
+          />
+          <GeneratorCheck
+            id={"uppercase-letters"}
+            name={"Include Uppercase Letters"}
+            onHandle={setIncludeUppercase}
+          />
+          <GeneratorCheck
+            id={"lowercase-letters"}
+            name={"Include Lowercase Letters"}
+            onHandle={setIncludeLowercase}
+          />
+          <GeneratorCheck
+            id={"include-numbers"}
+            name={"Include Numbers"}
+            onHandle={setIncludeNumbers}
+          />
+          <GeneratorCheck
+            id={"include - symbols"}
+            name={"Include Symbols"}
+            onHandle={setIncludeSymbols}
+          />
           <button onClick={handleGeneratePassword} className="generator__btn">
             Generate Button
           </button>
